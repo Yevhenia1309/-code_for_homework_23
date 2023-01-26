@@ -1,0 +1,85 @@
+Домашнє завдання:
+1. Напишіть регулярний вираз, який знаходитиме в тексті фрагменти,
+що складаються з однієї літери R, за якою слідує одна або більше літер b, за якою одна r.
+Враховувати верхній та нижній регістр.
+
+import re
+
+target = re.findall(r'Rb{1,}r', 'Robby likes Rbbbrox and Rbrrrrex or rbrax')
+print(target)
+
+2. Напишіть функцію, яка виконує валідацію номера банківської картки (9999-9999-9999-9999).
+
+import re
+
+def validator_card(string):
+    pattern = r'\d{4}[\s\-?]*\d{4}[\s\-?]*\d{4}[\s\-?]*\d{4}'
+    match = re.match(pattern, string)
+    if match:
+        return True
+    else:
+        return False
+
+string_1 = '1324235443654366'
+string_2 = '1324-2354-4365-4366'
+string_3 = '1324 2354 4365 4366'
+string_4 = 'Robby likes 1324 2354 4365 4366'
+print(validator_card(string_1))
+print(validator_card(string_2))
+print(validator_card(string_3))
+print(validator_card(string_4))
+
+
+3. Напишіть функцію, яка приймає рядкові дані та виконує перевірку на їхню відповідність мейлу.
+Вимоги:
+-Цифри (0-9).
+-лише латинські літери у великому (A-Z) та малому (a-z) регістрах.
+-у тілі мейла допустимі лише символи "_" і "-". Але вони не можуть бути першим символом мейлу.
+-Символ "-" не може повторюватися.
+
+#имоги:
+##-лише латинські літери у великому (A-Z) та малому (a-z) регістрах.
+#-у тілі мейла допустимі лише символи "_" і "-". Але вони не можуть бути першим символом мейлу.
+#-Символ "-" не може повторюватися.
+
+
+import re
+
+def validator_email(string):
+    pattern = r'(^[a-zA-Z0-9_]+'r'([-]{,1})'r'[a-zA-Z0-9_]+'r'@[a-zA-Z0-9-_]+'r'.[a-zA-Z0-9-]+$)'
+    match = re.match(pattern, string)
+    if match:
+        return True
+    else:
+        return False
+
+string_1 = 'tr4557GHFughf-e@host.com'
+string_2 = 'dUhijg__7647-jf@host_765.com'
+string_3 = 'dUhijg--77464@host.com'
+string_4 = '-dUhijg367-@host.com'
+print(validator_email(string_1))
+print(validator_email(string_2))
+print(validator_email(string_3))
+print(validator_email(string_4))
+
+4. Напишіть функцію, яка перевіряє правильність логіну. Правильний логін – рядок від 2 до 10 символів,
+ що містить лише літери та цифри.
+
+ import re
+
+def validator_login(string):
+    pattern = r'[\d\w]{2,10}'
+    match = re.match(pattern, string)
+    if match and len(match.group()) == len(string):
+        return True
+    else:
+        return False
+
+string_1 = 'gdhuIUghfv46'
+string_2 = 'df57-ug_hg'
+string_3 = 'ghh$$jjF'
+string_4 = 'Gjj567'
+print(validator_login(string_1))
+print(validator_login(string_2))
+print(validator_login(string_3))
+print(validator_login(string_4))
